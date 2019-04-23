@@ -1,0 +1,44 @@
+<html>
+	<head>
+	<!--<link rel="stylesheet" href="all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">-->
+	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/static/admin/css/login.css">
+	<script src="/static/admin/js/jquery.min.js"></script>
+	<script src="/static/admin/js/login.js"></script>
+	</head>
+	<body>
+	<div class="container" style="height:480px;">
+	<div class="title"><h1>Ramani Admin</h1></div>
+	<div class="sub-title"><h3>Sign in</h3></div>
+	<form method="post">
+	{% csrf_token %}
+	<div class="group1">
+		{% csrf_token %}
+		<input type="text" id="text1" spellcheck="false" required>
+		<span class="bar" id="bar1"></span>
+		<label id="label1">Enter your email</label>
+	</div>
+	<div class="group2">
+		<i onclick="change()" class="fa fa-eye-slash"style="color:#999;font-size:18px;font-weight:normal;position:absolute;
+	cursor:pointer;left:280px;top:15;"></i>
+		{% csrf_token %}
+		<input type="password" id="text2" spellcheck="false" required>
+		<span class="bar" id="bar2"></span>
+		<label id="label2">Enter your password</label>
+		<span id="msg-2"></span>
+	</div>
+	<div class="lala">
+			<button type="button" class="edit_button" onclick="validate()" style="height:38;">SUBMIT</button>
+	</div>
+	</form>
+	<div><span style="color:#4285f4;font-weight:bold;float:left;;margin-left:80px;">Forgot password?</span>
+		<span style="color:#4285f4;font-weight:bold;float:right;margin-right:50px;">Create account</span></div>
+		<br><br><br>
+		<center>
+		<div><span id="msg-1"></span></div>
+		</center>
+     </div>
+     
+	</body>
+</html>

@@ -1,0 +1,147 @@
+<html>
+	<head>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+	<link rel="stylesheet" href="/static/admin/css/bus1.css">
+	<link rel="stylesheet" href="/static/admin/css/bus2.css">
+	</head>
+	<body>
+	<div class="cover" id="cover"></div>
+		<div class="container" id="container">
+		<!--<div class="img">
+			<img src="account.svg"/>
+		</div>	-->
+		<div class="group-1">
+			<div class="sub-group-1">
+				<input type="text" class="text-1" value="system" id="text-1" spellcheck="false" required>
+				<span class="bar-1"></span>
+				<label class="label-1">Bus-Id</label>
+			</div>
+			<div class="sub-group-2">
+				<input type="text" class="text-2" spellcheck="false" required>
+				<span class="bar-2"></span>
+				<label class="label-2">Bus-NO</label>
+			</div>
+		</div>
+		<div class="group-2">
+			<span>
+				<input type="text" class="text-1" spellcheck="false" required>
+				<span class="bar-1"></span>
+				<label class="label-1">Bus-Type</label>
+			</span>
+		</div>
+		<div class="group-3">
+			<div class="sub-group-1">
+				<input type="text" class="text-1" spellcheck="false" required>
+				<span class="bar-1"></span>
+				<label class="label-1">Bus-Capacity</label>
+			</div>
+			<!--<div class="sub-group-2">
+				<input type="text" class="text-2" spellcheck="false" required>
+				<span class="bar-2"></span>
+				<label class="label-2">Confirm</label>
+				<i class="fa fa-eye-slash"style="color:#999;font-size:25px;font-weight:normal;position:absolute;
+				cursor:pointer;left:420px;top:15px;"></i>
+			</div>-->
+		</div>
+		<div group-4>
+			<button class="btn-1" >Submit</button>
+			<button class="btn-2">Continue</button>
+			<button class="btn-update">Update</button>
+			<button class="btn-3">Cancle</button>
+		</div>
+	</div>
+	<div class="container-2" id="container-2">
+		<div>Are You Sure?</div>
+		<hr class="divider"/><br>
+		<div>Delete &nbsp;: &nbsp; <span id="name" style="color:red;font-weight:bold"> </span></div><br>
+		<hr class="divider"/>
+		<button id="cancel">Cancle</button>
+		<button id="deleteRow">Delete</button>
+		
+	</div>
+	<nav class="menu" >
+	<div class="smartphone-menu-trigger"></div>
+  		<header class="avatar">
+			<i class="fas fa-user"></i>
+    	<h2>{{ admin }}</h2>
+  		</header>
+		<ul>
+		<center>
+	    <li><i class="fas fa-tachometer-alt"></i>&nbsp;Dashboard</li>
+	    <li><i class="fas fa-database"></i>&nbsp;Tables</li>
+	    <li>Settings</li>
+	    <li>Users</li>
+	    <li id="logout">Logout</li>
+		</center>
+	  	</ul>
+	</nav>
+	<table class="header-menu">
+		<tr>
+		<td>
+		<header><h3>Tables</h3></header>
+	</td>
+		</tr>
+		<tr>
+		<td  colspan="8">
+		<hr class="divider"/>
+		</td>
+			</tr>
+	<tr>
+		<td ><i class="fas fa-user"></i>&nbsp;<a href="{% url 'customer_view' %}">Customer</a></td>
+		<td><i class="fas fa-bus"></i>&nbsp;Bus</td>
+		<td><i class="fas fa-road"></i>&nbsp;<a href="{%url 'route_view'%}">Route</a></td>
+		<td><i class="fas fa-book"></i>&nbsp;<a href="{% url 'book_view'%}">Book</a></td>
+		<td><i class="fas fa-book"></i>&nbsp;<a href="">Time_table</a></td>
+		<td><i class="fas fa-book"></i>&nbsp;<a href="">Bus_route</a></td>
+		<td><i class="fas fa-book"></i>&nbsp;<a href="">waiting</a></td>
+		<td><i class="fas fa-book"></i>&nbsp;<a href="">cancellation</a></td>
+		</tr>
+	</table>
+	<table id="myTable">
+		<tr>
+		<td class="title" ><strong><i class="fas fa-user"></i>&nbsp;Bus</strong></td>
+		<td>
+			<i class="fa fa-search" aria-hidden="true"></i>
+			<input type="text" spellcheck="false"  placeholder="search"style="outline:none;border:none;border-bottom:1px solid gray;">
+		</td>
+		<td>
+			<button class="btn-0" onclick="openForm()"><i class="fa fa-plus"></i></button>
+		</td>
+		</tr>
+		<tr>
+			<td colspan=10>
+		<hr class="divider"></hr>
+			</td>
+		</tr>
+		<tr>
+			<td>Bus-Id</td>
+			<td>Bus-NO</td>
+			<td>Bus-Type</td>
+			<td>Bus-capacity</td>
+			<td>udpate</td>
+			<td>delete</td>
+		</tr>
+		<tr>
+			<td colspan="10">
+		<hr class="divider"></hr>
+		</td>
+		</tr>
+		{% for i in bus %}
+		<tr>
+			<td id="bus_id">{{ i.b_id }}</td>
+			<td id="bus_no">{{ i.bus_no }}</td>
+			<td id="bus_type">{{ i.bus_type }}</td>
+			<td id="bus_capacity">{{ i.bus_capacity }}</td>		
+			<td><i class="fa fa-edit" aria-hidden="true"   id="update" style="position:relative;font-size:20px;margin-left:15px;"></i><td>
+			<td><i class="fa fa-trash" id="delete" aria-hidden="true"  style="font-size:20px;margin-left:-70px;"></i><td>
+		</tr>
+		{% endfor%}
+		<tr>
+			<td>
+			</td>
+		</tr>
+	</table>
+	</body>
+	<script src="/static/admin/js/jquery.min.js"></script>
+<script src="/static/admin/js/bus.js"></script>
+</html>

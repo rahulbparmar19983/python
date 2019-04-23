@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+</style>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Ramani Travels-Book</title>
+
+  <!-- CSS  -->
+ <link rel="stylesheet" type="text/css" href="/static/ramani/css/materialize.min.css">
+  <style type="text/css">
+  @font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/static/admin/fonts/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2') format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+</style>
+  <link rel="stylesheet" href="/static/ramani_travels/css/materialize.min.css">
+      <style>
+    </style>
+</head>
+<body>
+{% csrf_token %}
+<!--  <nav class="navbar-fixed">
+    <div class="nav-wrapper blue white no-shadow">
+      <a href="#" class="brand-logo left " style="margin-left:10px;">Ramani Travels</a>
+      <ul id="nav-mobile" class="right">
+        <li><a href="#" class="black-text waves-effect waves-dark">Login</a></li>
+        <li><a href="#" class="btn blue waves-effect waves-light" id="">Create Account</a></li>
+      </ul>
+    </div>
+  </nav>-->
+{% if user_state == 0 %}
+<nav class="navbar-fixed">
+    <div class="nav-wrapper white">
+      <a href="#" class="brand-logo left black-text text-light-5 " style="margin-left:10px;font-size:24px;">Ramani&nbsp;Travels</a>
+
+      <ul id="nav-mobile" class="right">
+      <li><a href="{% url 'home_view' %}" class="black-text waves-effect waves-dark"  id="search">Home</a></li>
+        <li><a href="{% url 'login_view' %}" class="black-text waves-effect waves-dark">Login</a></li>
+        <li><a href="{% url 'registration_view' %}" class="btn blue waves-effect waves-light no-shadows hide-on-med-and-down" id="">Create Account</a></li>
+      </ul>
+    </div>
+  </nav>
+<nav class="navbar-fixed show-on-medium-and-down hide-on-med-and-up">
+    <div class="nav-wrapper blue white-spacete">
+      <ul id="nav-mobile" class="left">
+        <li><a href="#" class="btn-small blue waves-effect waves-light no-shadows" id="">Create Account</a></li>
+      </ul>
+  </nav><br>   
+{% else %}
+<nav class="navbar-fixed">
+    <div class="nav-wrapper white">
+      <a href="#" class="brand-logo left black-text text-light-5 " style="margin-left:10px;font-size:24px;">{{ c.name }}</a>
+
+      <ul id="nav-mobile" class="right">        
+      <li><a href="{% url 'home_view' %}" class="black-text waves-effect waves-dark"  id="search">Home</a></li>
+        <li><a href="/user_logout/" class="btn-small blue waves-effect waves-light" id="">logout</a></li>      
+    </div>
+  </nav>
+  <div style="display:none" id="username">{{ c.email }}</div>
+  <div style="display:none" id="password">{{ c.password }}</div>
+{% endif %} 
+<div class="row center">
+    <div class="col s12 m4 offset-m1">
+      <div class="card grey lighten-5 no-shadows">
+        <div class="card-content">
+          <span class="card-title">Select Seat</span>
+          <div><strong id="msg" class="red-text"></strong></div>
+          <table id="seats">
+            {{ table | safe }}
+          </table>
+        </div>
+        <div class="card-action">
+          <div><strong id="msg1" class="red-text"></strong></div>
+        </div><br><br>
+      </div>
+    </div>
+<div class="col s12 m4 offset-m2">
+<br><br><br><br><br><br><br><br>
+{% if  user_state  == 0 %}
+<form>
+  <div class="input-field">
+    <i class="material-icons prefix">account_circle</i>
+    <input id="username" type="text">
+    <label for="username">Enter email address</label>
+    <div id="alert-1" class="red-text"></div>
+  </div>
+  <div class="input-field">
+    <i class="material-icons prefix">vpn_key</i>
+    <input id="password" type="password">
+    <label for="password">Enter password</label>
+    <div id="alert-2" class="red-text"></div>
+  </div>
+  <div><strong id="seat-no"></strong></div>
+  <div><strong id="payment"></strong></div> 
+  <div><strong id="payment-option"></strong>
+  <!--<script src="https://js.stripe.com/v3/"></script>
+<form action="your-server-side-code" method="POST">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_gC7vFimDN0s7nArRMhI1c8NE"
+    data-name="Ramani Travels"
+    data-description="Payment"
+    data-description="Widget"
+    
+    data-locale="auto">
+  </script>
+</form>-->
+  <div class="input-field">
+    {% if avaibilty != 0 %}
+    <button class="btn blue" id="submit">book</button>
+    {% else %}
+    <button class="btn blue" id="waiting">Waiting</button>
+    <p><strong>Are Sure You Want To Be in Waiting List</strong></p>
+    <p>As We Find Any Available Seat We Will Inform Via Email</p>    
+    {% endif %}
+  </div>  
+</div>    
+</form>
+{% else %}
+  <div><strong id="seat-no"></strong></div> 
+  <div><strong id="payment"></strong></div>
+<!--<form action="your-server-side-code" method="POST">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_gC7vFimDN0s7nArRMhI1c8NE"
+    data-amount="999"
+    data-name="Ramani Travels"
+    data-description="Payment"
+    data-locale="auto">
+  </script>
+</form>-->
+  <div class="input-field">
+    {% if avaibilty != 0 %}
+    <button class="btn-large no-shadows blue darken-2" id="submit2">book</button><br>
+    {% else %}
+    <button class="btn blue" id="waiting2">Waiting</button>
+    <p><strong>Are Sure You Want To Be in Waiting List</strong></p>
+    <p>As We Find Any Available Seat We Will Inform Via Email</p>
+    {% endif %}
+  </div>    
+{% endif %}
+</div>    
+</div>
+<script src="/static/ramani_travels/js/jquery.min.js"></script>
+<script src="/static/ramani_travels/js/materialize.min.js"></script>
+<script src="/static/ramani_travels/js/book.js"></script>
+</body>
+</html>

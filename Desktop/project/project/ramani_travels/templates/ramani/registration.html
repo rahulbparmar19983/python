@@ -1,0 +1,89 @@
+<html>
+  <head>
+    <!-- this is my CSS via cdn -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/static/ramani_travels/css/materialize.min.css">
+    <style>
+    </style>
+</head>
+ <body class="grey lighten-5">
+ <div class="valign-wrapper" style="width:100%;height:100%;">
+    <div class="valign" style="width:100%;">
+        <div class="container">
+           <div class="row">
+          <div class="col s12 m8 offset-m2">
+                 <div class="card">
+                <div class="card-content">
+                		<h6>Ramani Travels</h6>
+                       <span class="card-title black-text">Create Account</span>
+                          <div class="row">
+                          <form class="formValidate" id="formValidate">
+                             <div class="input-field col s12 m7">
+                             <i class="material-icons prefix">account_circle</i>
+                                <input id="username" spellcheck="false" type="text" name="username">
+                                <label for="username" class="active">Username</label>
+                                <div class="red-text" id="alert-1" style="font-size:13px;text-align:center"></div>
+                             </div>
+                             <div class="input-field col s12 m5">
+                              <i class="material-icons prefix">phone</i>
+                                <input id="contact_no"  spellcheck="false" type="text" name="contact_no">
+                                <label for="contact_no" class="active">Contact_Number</label>
+                                <div class="red-text" id="alert-2" style="font-size:13px;text-align:center"></div>
+                             </div>
+                              <div class="input-field col s12 m12">
+                              	<i class="material-icons prefix">email</i>
+                                <input  id="email"  spellcheck="false" type="email" name="email">
+                                <label for="email" class="active">Email</label>
+                                <div class="red-text" id="alert-3" style="font-size:13px;text-align:center"></div>
+                             </div>
+                              <div class="input-field col s12 m6">
+                              	<i class="material-icons prefix">vpn_key</i>
+                                <input  id="password"  spellcheck="false" type="password" name="password">
+                                <label for="password" class="active">Password</label>
+                                <div class="red-text" id="alert-4" style="font-size:13px;margin-left:35%;text-align:center;position:absolute"></div>
+                             </div>
+                              <div class="input-field col s12 m6">
+                              	<i class="material-icons prefix">vpn_key</i>
+                              	<i class="material-icons prefix" style="margin-left:80%;">remove_red_eye</i>
+                                <input  id="confirm" spellcheck="false" type="password" name="confirm">
+                                <label for="confirm" class="active">Confirm</label>
+                                <div class="red-text" id="alert-5" style="font-size:13px;text-align:center;"></div>
+                             </div>                          
+                        	 <div class="input-field col s3 m2 ">
+                								<p>
+                								<label>
+                								<input class="with-gap" id="gender" name="gender" type="radio"/>
+                								<span>Male</span>
+                								</label>
+                								</p>								
+                          <div class="red-text" id="alert-6" style="font-size:13px;text-align:center;white-space: nowrap;"></div>
+                           </div>
+                            <div class="input-field col s3 m2">
+                                <p>
+                								<label>
+                								<input class="with-gap" id="gender" name="gender" type="radio"/>
+                								<span>Female</span>
+                								</label>
+                								</p>
+                             </div>
+                          </div>             
+                          <div class="row">             
+                              <div class="col">
+                                <button id="submit"  class="btn blue waves-effect waves-light">Submit</button>
+                              </div>
+                              <div class="col off">
+                                <span  class="btn white black-text waves-effect waves-dark no-shadows">home</span>
+                              </div>
+                          </div>
+                          </form>
+                 </div>
+              </div>
+           </div>
+        </div>
+    </div>
+</div>
+<script src="/static/ramani_travels/js/jquery.min.js"></script>
+<script src="/static/ramani_travels/js/materialize.min.js"></script>
+<script src="/static/ramani_travels/js/registration.js"></script>
+ </body>
+ </html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/static/admin/css/materialize.min.css">
+<link rel="icon" type="image/png" href="/static/admin/img/admin.png" sizes="16x16">
+  <style type="text/css">
+    @font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/static/admin/fonts/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2') format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+  	header,
+	main,
+	footer {
+	  padding-left: 240px;
+	}
+
+	body {
+	  backgroud: white;
+	}
+
+	@media only screen and (max-width: 992px) {
+	  header,
+	  main,
+	  footer {
+	    padding-left: 0;
+	  }
+	}
+
+	#credits li,
+	#credits li a {
+	  color: white;
+	}
+
+	#credits li a {
+	  font-weight: bold;
+	}
+
+	.footer-copyright .container,
+	.footer-copyright .container a {
+	  color: #BCC2E2;
+	}
+
+	.fab-tip {
+	  position: fixed;
+	  right: 85px;
+	  padding: 0px 0.5rem;
+	  text-align: right;
+	  background-color: #323232;
+	  border-radius: 2px;
+	  color: #FFF;
+	  width: auto;
+	}
+  </style>
+</head>
+
+<body>
+
+  <ul id="slide-out" class="side-nav fixed z-depth-2">
+    <li class="center no-padding">
+      <div class="indigo darken-2 white-text" style="height: 180px;">
+        <div class="row">
+          <img style="margin-top: 5%;" width="100" height="100" src="/static/admin/img/admin.png" class="circle responsive-img" />
+
+          <p style="margin-top: -13%;">
+            {{ admin }}
+          </p>
+        </div>
+      </div>
+    </li>
+
+    <li id="dash_dashboard"><a class="waves-effect" href="/admin/"><b>Dashboard</b></a></li>
+
+    <ul class="collapsible" data-collapsible="accordion">
+      <li id="dash_users">
+        <div id="dash_users_header" class="collapsible-header waves-effect"><b>Database <i class=' material-icons right'>arrow_drop_down</i></b></div>
+        <div id="dash_users_body" class="collapsible-body">
+        <ul>
+            <li>
+              <a class="waves-effect" style="text-decoration: none;" href="{% url 'customer_view' %}">Customer</a>
+            </li>
+            <li>
+              <a class="waves-effect" style="text-decoration: none;" href="{% url 'book_view' %}">Book</a>
+            </li>
+            <li>
+              <a class="waves-effect" style="text-decoration: none;" href="{% url 'bus_view' %}">Bus</a>
+            </li>            
+            <li>
+              <a class="waves-effect" style="text-decoration: none;" href="{% url 'route_view' %}">Route</a>
+            </li>                        
+            <li>
+              <a class="waves-effect" style="text-decoration: none;" href="{% url 'time_table_view' %}">Time-Table</a>
+            </li>            
+            <li>
+              <a class="waves-effect" style="text-decoration: none;" href="{% url 'waiting_view' %}">Waiting</a>
+            </li>     
+            <li>
+              <a class="waves-effect" style="text-decoration: none;" href="/admin/cancellation">Cancellation</a>
+            </li>                             
+          </ul>
+        </div>
+      </li>
+    </ul>
+    <ul class="collapsible" data-collapsible="accordion">
+      <li id="dash_users">
+        <div id="dash_users_header" class="collapsible-header waves-effect"><b>Report <i class=' material-icons right'>arrow_drop_down</i></b></div>
+        <div id="dash_users_body" class="collapsible-body">
+        <ul>
+            <li>
+              <a class="waves-effect" style="text-decoration: none;" href="{% url 'report_book' %}">Book</a>
+            </li>
+            <li>
+              <a class="waves-effect" style="text-decoration: none;" href="{% url 'report_bus' %}">Bus</a>
+            </li>
+            <li>
+              <a class="waves-effect" style="text-decoration: none;" href="{% url 'report_route' %}">Route</a>
+            </li>             
+          </ul>
+        </div>
+      </li>
+    </ul>    
+  </ul>
+
+  <header>
+    <nav class="indigo" role="navigation">
+      <div class="nav-wrapper">
+        <a data-activates="slide-out" class="button-collapse show-on-large" href="#!"><h5 style="margin-top: 17px; margin-left: 5px;" class="white-text" />Admin</h5></a>
+
+        <ul class="right hide-on-med-and-down">
+          <li>
+            <a class='right' href='/admin/logout/'><i class=' material-icons'>eject</i></a>
+          </li>
+        </ul>
+
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+      </div>
+    </nav>
+
+    <nav>
+      <div class="nav-wrapper indigo darken-2">
+        <a style="margin-left: 20px;" class="breadcrumb" href="#!">Admin</a>
+        <a class="breadcrumb" href="#!">Bus_Report</a>
+
+        <div style="margin-right: 20px;" id="timestamp" class="right"></div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <br><br>
+    <div class="row">
+      <div class="col m4 offset-m3">
+        <div class="input-field">
+          <i class="material-icons prefix">directions_bus</i>
+          <input type="text" id="bus_no" >
+          <label>Bus_No</label>
+        </div>
+      </div>
+      <div class="col m1">
+        <div class="input-field ">
+          <input type="submit" class="btn blue" value="generate" id="submit">
+        </div>
+      </div>            
+    </div>
+    <div class="row" style="display:none;" id="display">
+      <div class="col s6 m12">
+        <div style="padding: 35px;" align="center" class="card">
+          <div class="row">
+            <div class="center card-title">
+              <b>Bus Report</b>
+            </div>
+          </div>
+    <div class="row">
+    <table id="myTable">
+        <thead>
+          <tr>
+              <th>Bus_type</th>
+              <th>Bus_Capacity</th>
+              <th>Depature_Stataion</th>
+              <th>Arrival_Station</th>
+              <th>Distance</th>
+              <th>Journey_Time</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        </tbody>
+      </table>
+          </div>
+        </div>
+      </div>      
+    </div>
+  </main>
+
+
+  <script type="text/javascript" src="/static/admin/js/jquery.min.js"></script> <script type="text/javascript" src="/static/admin/js/materialize.min.js"></script>
+  <script type="text/javascript" src="/static/admin/js/report_bus.js"></script>
+
+  <script type="text/javascript">
+      $('.datepicker').pickadate({
+    format: 'dd/mm/yyyy',
+    minDate: new Date()
+  });
+  </script>
+
+</body>
+</html>
